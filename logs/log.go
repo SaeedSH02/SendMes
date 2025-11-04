@@ -8,7 +8,6 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
-// TODO: Replace logger with slog as that will not force your to include zap.Fields which is kinda ugly
 
 // Gl is the global logger
 var Gl *zap.Logger

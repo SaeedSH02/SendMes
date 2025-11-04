@@ -13,9 +13,9 @@ import (
 	"go.uber.org/zap"
 )
 
-func SendOneSMS(receptor string) (result *models.Results,err error) {
+func SendMessage(receptor, message string) (result *models.Results,err error) {
 	bodyMsg := &models.BodyMessage{}
-	bodyMsg.Message = models.OrginalMsg
+	bodyMsg.Message = message
 	bodyMsg.Sender = models.OwnSender
 	bodyMsg.Receptor = receptor
 

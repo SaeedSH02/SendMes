@@ -32,5 +32,6 @@ func StartBot() {
 
 func registerHandlers(b *tele.Bot) {
 	b.Handle("/start", startHandler)
+	b.Handle("/custom", send_custom_message)
 	b.Handle(tele.OnText, onTextHandler)
 }
