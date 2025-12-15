@@ -30,7 +30,6 @@ func StartBot() {
 	}
 	b.Use(middle.UserAllowed)
 	registerHandlers(b)
-	
 
 	logger.Gl.Info("bot started!")
 	b.Start()

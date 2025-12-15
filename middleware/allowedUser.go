@@ -3,7 +3,7 @@ package middle
 import "gopkg.in/telebot.v4"
 
 var allowedUsers = map[int64]bool{
-	//set of allowed users with TEL IDs
+	//set of allowed users with TEL IDs for example
 	1234567890: true,
 	987654321:  true,
 	1122334455: true,
