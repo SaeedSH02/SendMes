@@ -1,17 +1,18 @@
 package tel
 
 import (
+	"log"
 	"os"
-	log "sendMes/logs"
-	"time"
+	logger "sendMes/logs"
 
+	"time"
 	tele "gopkg.in/telebot.v4"
 )
 
 var b *tele.Bot
 
 func StartBot() {
-	
+
 	pref := tele.Settings{
 		Token:  os.Getenv("TOKEN"),
 		Poller: &tele.LongPoller{Timeout: 10 * time.Second},
@@ -20,12 +21,14 @@ func StartBot() {
 	var err error
 	b, err = tele.NewBot(pref)
 	if err != nil {
-		log.Gl.Fatal("Cant make bot")
+		logger.Gl.Error("failed to create bot", "err", err)
+		log.Fatal(err)
 		return
 	}
 	registerHandlers(b)
+	
 
-	log.Gl.Info("Bot Started...")
+	logger.Gl.Info("bot started!")
 	b.Start()
 
 }
@@ -34,4 +37,5 @@ func registerHandlers(b *tele.Bot) {
 	b.Handle("/start", startHandler)
 	b.Handle("/custom", send_custom_message)
 	b.Handle(tele.OnText, onTextHandler)
+	logger.Gl.Info("handlers registered")
 }

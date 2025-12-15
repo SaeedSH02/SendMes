@@ -18,7 +18,7 @@ func init() {
 
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Can't Read .env")
+		log.Fatal("failed to Read .env")
 	}
 
 	Rdb = redis.NewClient(&redis.Options{

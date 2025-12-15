@@ -6,3 +6,11 @@ services:
       - "6379:6379"
     command: ["redis-server", "--requirepass", "1234", "--databases", "24"]
     restart: unless-stopped
+  bot:
+    build: .
+    container_name: telegram_bot
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - redis
