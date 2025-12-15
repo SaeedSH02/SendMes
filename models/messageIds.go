@@ -1,4 +1,4 @@
-package tel
+package models
 
 var ErrorMessages = map[int]string{
 	1:  "Invalid username or password.",

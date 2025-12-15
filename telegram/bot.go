@@ -3,8 +3,9 @@ package tel
 import (
 	"log"
 	"os"
-	middle "sendMes/Middleware"
 	logger "sendMes/logs"
+	middle "sendMes/middleware"
+	handler "sendMes/telegram/handlers"
 
 	"time"
 
@@ -37,9 +38,9 @@ func StartBot() {
 }
 
 func registerHandlers(b *tele.Bot) {
-	b.Handle("/start", startHandler)
-	b.Handle("/custom", send_custom_message)
-	b.Handle("/id", getID)
-	b.Handle(tele.OnText, onTextHandler)
+	b.Handle("/start", handler.StartHandler)
+	b.Handle("/custom", handler.Send_custom_message)
+	b.Handle("/id", handler.GetID)
+	b.Handle(tele.OnText, handler.OnTextHandler)
 	logger.Gl.Info("handlers registered")
 }

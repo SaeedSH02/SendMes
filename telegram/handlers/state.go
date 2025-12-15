@@ -1,10 +1,9 @@
-package tel
+package handler
 
 import (
 	"context"
 	"fmt"
 	"regexp"
-	middle "sendMes/Middleware"
 	"sendMes/config"
 	logger "sendMes/logs"
 	models "sendMes/models"
@@ -51,7 +50,7 @@ func (s *SendOne) Handle(c telebot.Context) error {
 	}
 	bodyMessage := models.OrginalMsg
 
-	result, err := middle.SendMessage(phone, bodyMessage)
+	result, err := SendMessage(phone, bodyMessage)
 	if err != nil {
 		c.Send("خطا در ارسال پیام")
 		logger.Gl.Warn(
@@ -71,7 +70,7 @@ func (s *SendOne) Handle(c telebot.Context) error {
 		)
 		clearState(userID)
 		return nil
-	} else if msg, exist := ErrorMessages[result.MessageIds]; exist {
+	} else if msg, exist := models.ErrorMessages[result.MessageIds]; exist {
 		logger.Gl.Warn(
 			"message send failed",
 			"error_message", msg,
@@ -141,7 +140,7 @@ func (s *MessageInputState) Handle(c telebot.Context) error {
 		return nil
 	}
 
-	result, err := middle.SendMessage(phone, message)
+	result, err := SendMessage(phone, message)
 	if err != nil {
 		c.Send("خطا در ارسال پیام")
 		log.Error(
@@ -160,7 +159,7 @@ func (s *MessageInputState) Handle(c telebot.Context) error {
 			"phone_suffix", phone[len(phone)-4:],
 		)
 		return nil
-	} else if msg, exist := ErrorMessages[result.MessageIds]; exist {
+	} else if msg, exist := models.ErrorMessages[result.MessageIds]; exist {
 		log.Warn(
 			"message send failed with known error code",
 			"error_message", msg,
