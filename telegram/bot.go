@@ -3,9 +3,11 @@ package tel
 import (
 	"log"
 	"os"
+	middle "sendMes/Middleware"
 	logger "sendMes/logs"
 
 	"time"
+
 	tele "gopkg.in/telebot.v4"
 )
 
@@ -25,6 +27,7 @@ func StartBot() {
 		log.Fatal(err)
 		return
 	}
+	b.Use(middle.UserAllowed)
 	registerHandlers(b)
 	
 

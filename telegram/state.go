@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"regexp"
 	middle "sendMes/Middleware"
-	models "sendMes/Models"
 	"sendMes/config"
 	logger "sendMes/logs"
+	models "sendMes/models"
 
 	"gopkg.in/telebot.v4"
 )

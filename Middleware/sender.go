@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
-	models "sendMes/Models"
+	models "sendMes/models"
 	logger "sendMes/logs"
 
 	"strings"
