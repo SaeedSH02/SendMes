@@ -7,6 +7,7 @@ import (
 	"sendMes/config"
 	logger "sendMes/logs"
 	models "sendMes/models"
+	"time"
 
 	"gopkg.in/telebot.v4"
 )
@@ -108,8 +109,8 @@ func (s *PhoneInputState) Handle(c telebot.Context) error {
 		return nil
 	}
 
-	config.Rdb.Set(ctx, fmt.Sprintf("phone:%d", userID), phone, 0)
-	config.Rdb.Set(ctx, fmt.Sprintf("state:%d", userID), "waiting_for_message", 0)
+	config.Rdb.Set(ctx, fmt.Sprintf("phone:%d", userID), phone, 5*time.Minute)
+	config.Rdb.Set(ctx, fmt.Sprintf("state:%d", userID), "waiting_for_message", 5*time.Minute)
 
 	return c.Send(" لطفاً متن پیام خود را وارد کنید: ")
 }
