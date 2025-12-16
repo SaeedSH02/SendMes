@@ -37,9 +37,9 @@ func StartBot() {
 }
 
 func registerHandlers(b *tele.Bot) {
-	b.Handle("/start", handler.StartHandler)
 	b.Handle("/custom", handler.Send_custom_message)
 	b.Handle("/id", handler.GetID)
+	b.Handle("/start", handler.StartHandler)
 	b.Handle(tele.OnText, handler.OnTextHandler)
 	logger.Gl.Info("handlers registered")
 }
